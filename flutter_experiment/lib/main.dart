@@ -10,12 +10,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'SaaS Company Demo', // Updated app title
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blueAccent), // Changed seed color
         useMaterial3: true,
+        // Optional: Define styles for TextButtons if needed
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor:
+                Colors.white, // Set text color for buttons in AppBar
+          ),
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Hello World Page'),
+      // Remove the debug banner
+      debugShowCheckedModeBanner: false,
+      home: const MyHomePage(title: 'Our Awesome SaaS'), // Updated page title
     );
   }
 }
@@ -30,72 +40,86 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // No counter state needed anymore
+  // int _counter = 0;
+  // void _incrementCounter() { ... }
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  // Helper function to create menu items for clarity
+  Widget _buildMenuItem(String title) {
+    return Padding(
+      // Add some padding around each menu item
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: TextButton(
+        onPressed: () {
+          // Placeholder action - in a real app, this would navigate
+          print('$title clicked');
+          // You could use Navigator.pushNamed(context, '/$title'); if using routes
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content: Text('$title clicked! Navigation not implemented.')),
+          );
+        },
+        child: Text(title),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        backgroundColor: Theme.of(context)
+            .colorScheme
+            .primary, // Use primary color for AppBar
+        title: Text(
+          widget.title,
+          style: TextStyle(
+              color: Theme.of(context)
+                  .colorScheme
+                  .onPrimary), // Ensure title text is visible
+        ),
+        // Use 'actions' for menu items on the right side of the AppBar
+        actions: <Widget>[
+          _buildMenuItem('Products'),
+          _buildMenuItem('Open Source'),
+          _buildMenuItem('Solutions'),
+          _buildMenuItem('Learn'),
+          _buildMenuItem('Docs'),
+          _buildMenuItem('Pricing'),
+          _buildMenuItem('Sign In'),
+          _buildMenuItem('Downloads'),
+          _buildMenuItem('Contact Us'),
+          const SizedBox(width: 16), // Add some spacing at the end
+        ],
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+        // Replace the counter display with placeholder content
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // layout bounds and zones for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Removed the original text widget
-            // const Text(
-            //   'You have pushed the button this many times:',
-            // ),
             Text(
-              'hello world $_counter', // <-- Changed this line
+              'Welcome to ${widget.title}!',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const SizedBox(height: 20), // Add some space
+            const Text(
+              'This is the main content area of your SaaS website.',
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Get Started Clicked!')),
+                );
+              },
+              child: const Text('Get Started'),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // Removed the FloatingActionButton
+      // floatingActionButton: FloatingActionButton(...)
     );
   }
 }
