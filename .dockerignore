@@ -1,0 +1,34 @@
+# Git files
+.git/
+.gitignore
+
+# Docker specific files (don't copy the build instructions themselves)
+Dockerfile
+Containerfile
+.dockerignore
+Makefile
+
+# Flutter/Dart build artifacts and caches
+# These should be generated *inside* the container, not copied from the host
+flutter_experiment/build/
+flutter_experiment/.dart_tool/
+flutter_experiment/.packages
+flutter_experiment/.flutter-plugins
+flutter_experiment/.flutter-plugins-dependencies
+
+# IDE specific files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Test outputs (if any)
+flutter_experiment/coverage/
+
+# Add any other files or directories specific to your setup
+# that are not needed to build the Flutter web app inside the container.
