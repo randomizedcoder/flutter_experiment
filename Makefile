@@ -58,4 +58,10 @@ down_flutter_experiment:
 		--file build/containers/flutter_experiment/docker-compose.yml \
 		down
 
+docker_logs:
+		docker logs --follow flutter_experiment
+
+docker_exec:
+		docker exec -ti flutter_experiment /bin/sh
+
 # end

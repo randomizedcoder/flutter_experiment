@@ -104,6 +104,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // Helper function to create standard menu items
   Widget _buildMenuItem(String title) {
+    // ... (no changes here) ...
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: TextButton(
@@ -121,10 +122,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // Helper function for footer links
   Widget _buildFooterLink(String text) {
+    // ... (no changes here) ...
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: InkWell(
-        // Use InkWell for tap effect, TextButton also works
         onTap: () {
           print('$text link clicked');
           ScaffoldMessenger.of(context).showSnackBar(
@@ -132,11 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 content:
                     Text('$text link clicked! Navigation not implemented.')),
           );
-          // Example for actual navigation (requires url_launcher package):
-          // final Uri url = Uri.parse('https://yourcompany.com/$text'); // Adjust URL
-          // if (!await launchUrl(url)) {
-          //   print('Could not launch $url');
-          // }
         },
         child: Text(
           text,
@@ -160,9 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final int currentYear =
         DateTime.now().year; // Get current year for copyright
 
-    // Define accentYellow here or access from theme if preferred
-    // Using the same definition as in MyApp for consistency
-    const Color accentYellow = Color.fromARGB(255, 231, 210, 94);
+    // No need to define accentYellow here anymore, it's handled by the theme
 
     return Scaffold(
       appBar: AppBar(
@@ -175,25 +169,13 @@ class _MyHomePageState extends State<MyHomePage> {
           _buildMenuItem('Docs'),
           _buildMenuItem('Pricing'),
 
-          // --- Highlighted Sign In Button ---
+          // --- Highlighted Sign In Button (Relying on Theme) ---
           Padding(
             padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-                vertical: 8.0), // Add vertical padding to align better
+                horizontal: 8.0, vertical: 8.0), // Keep padding for alignment
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    accentYellow, // Use the accent color for background
-                foregroundColor: Colors.black, // Text color on yellow
-                // Optional: Adjust padding if needed to match TextButton height
-                // padding: EdgeInsets.symmetric(horizontal: 16.0),
-                // Optional: Ensure text style matches theme if needed (usually automatic)
-                // textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
-                shape: RoundedRectangleBorder(
-                  // Optional: make it less rounded if desired
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
+              // REMOVED the explicit 'style' property here.
+              // It will now inherit from elevatedButtonTheme in MyApp.
               onPressed: () {
                 print('Sign In clicked');
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -212,8 +194,9 @@ class _MyHomePageState extends State<MyHomePage> {
           const SizedBox(width: 16),
         ],
       ),
-      // Use a Column to arrange main content and footer
+      // Body and Footer remain the same
       body: Column(
+        // ... (rest of the body Column remains unchanged) ...
         children: [
           // Main content area - takes up available space
           Expanded(
@@ -237,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
-                      // This button uses the default ElevatedButton theme (yellow bg)
+                      // This button also uses the default ElevatedButton theme (yellow bg)
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Get Started Clicked!')),
