@@ -1,0 +1,76 @@
+#18 [builder 12/12] RUN echo "--- Listing Flutter build output ---" && ls -lR /app/build/web && echo "--- End of listing ---"
+#18 0.078 --- Listing Flutter build output ---
+#18 0.081 /app/build/web:
+#18 0.081 total 3564
+#18 0.081 drwxr-xr-x 5 root root    4096 Apr 19 18:14 assets
+#18 0.081 drwxr-xr-x 3 root root    4096 Apr 19 18:13 canvaskit
+#18 0.081 -rw-r--r-- 1 root root     917 Apr 19 18:14 favicon.png
+#18 0.081 -rw-r--r-- 1 root root    7735 Apr 19 18:13 flutter.js
+#18 0.081 -rw-r--r-- 1 root root    8182 Apr 19 18:13 flutter_bootstrap.js
+#18 0.081 -rw-r--r-- 1 root root    8417 Apr 19 18:14 flutter_service_worker.js
+#18 0.081 drwxr-xr-x 2 root root    4096 Apr 19 18:14 icons
+#18 0.081 -rw-r--r-- 1 root root    1223 Apr 19 18:13 index.html
+#18 0.081 -rw-r--r-- 1 root root 1825554 Apr 19 18:14 main.dart.js
+#18 0.081 -rw-r--r-- 1 root root   32231 Apr 19 18:14 main.dart.mjs
+#18 0.081 -rw-r--r-- 1 root root 1732490 Apr 19 18:14 main.dart.wasm
+#18 0.081 -rw-r--r-- 1 root root     932 Apr 19 18:14 manifest.json
+#18 0.081 -rw-r--r-- 1 root root     106 Apr 19 18:14 version.json
+#18 0.081
+#18 0.081 /app/build/web/assets:
+#18 0.081 total 1756
+#18 0.081 -rw-r--r-- 1 root root     117 Apr 19 18:14 AssetManifest.bin
+#18 0.081 -rw-r--r-- 1 root root     158 Apr 19 18:14 AssetManifest.bin.json
+#18 0.081 -rw-r--r-- 1 root root     109 Apr 19 18:14 AssetManifest.json
+#18 0.081 -rw-r--r-- 1 root root     208 Apr 19 18:14 FontManifest.json
+#18 0.081 -rw-r--r-- 1 root root 1768508 Apr 19 18:14 NOTICES
+#18 0.081 drwxr-xr-x 2 root root    4096 Apr 19 18:14 fonts
+#18 0.081 drwxr-xr-x 3 root root    4096 Apr 19 18:14 packages
+#18 0.081 drwxr-xr-x 2 root root    4096 Apr 19 18:14 shaders
+#18 0.081
+#18 0.081 /app/build/web/assets/fonts:
+#18 0.081 total 8
+#18 0.081 -rw-r--r-- 1 root root 7736 Apr 19 18:14 MaterialIcons-Regular.otf
+#18 0.081
+#18 0.081 /app/build/web/assets/packages:
+#18 0.081 total 4
+#18 0.081 drwxr-xr-x 3 root root 4096 Apr 19 18:14 cupertino_icons
+#18 0.081
+#18 0.081 /app/build/web/assets/packages/cupertino_icons:
+#18 0.081 total 4
+#18 0.081 drwxr-xr-x 2 root root 4096 Apr 19 18:14 assets
+#18 0.081
+#18 0.081 /app/build/web/assets/packages/cupertino_icons/assets:
+#18 0.081 total 4
+#18 0.081 -rw-r--r-- 1 root root 1472 Apr 19 18:14 CupertinoIcons.ttf
+#18 0.081
+#18 0.081 /app/build/web/assets/shaders:
+#18 0.081 total 12
+#18 0.081 -rw-r--r-- 1 root root 8867 Apr 19 18:14 ink_sparkle.frag
+#18 0.081
+#18 0.081 /app/build/web/canvaskit:
+#18 0.081 total 17728
+#18 0.081 -rw-r--r-- 1 root root   86608 Apr 19 18:13 canvaskit.js
+#18 0.081 -rw-r--r-- 1 root root 1330405 Apr 19 18:13 canvaskit.js.symbols
+#18 0.081 -rw-r--r-- 1 root root 6944939 Apr 19 18:13 canvaskit.wasm
+#18 0.081 drwxr-xr-x 2 root root    4096 Apr 19 18:13 chromium
+#18 0.081 -rw-r--r-- 1 root root   66046 Apr 19 18:13 skwasm.js
+#18 0.081 -rw-r--r-- 1 root root 1431821 Apr 19 18:13 skwasm.js.symbols
+#18 0.081 -rw-r--r-- 1 root root 3396701 Apr 19 18:13 skwasm.wasm
+#18 0.081 -rw-r--r-- 1 root root   57923 Apr 19 18:13 skwasm_st.js
+#18 0.081 -rw-r--r-- 1 root root 1428112 Apr 19 18:13 skwasm_st.js.symbols
+#18 0.081 -rw-r--r-- 1 root root 3383742 Apr 19 18:13 skwasm_st.wasm
+#18 0.081
+#18 0.081 /app/build/web/canvaskit/chromium:
+#18 0.081 total 6752
+#18 0.081 -rw-r--r-- 1 root root   86245 Apr 19 18:13 canvaskit.js
+#18 0.081 -rw-r--r-- 1 root root 1251508 Apr 19 18:13 canvaskit.js.symbols
+#18 0.081 -rw-r--r-- 1 root root 5567526 Apr 19 18:13 canvaskit.wasm
+#18 0.081
+#18 0.081 /app/build/web/icons:
+#18 0.081 total 52
+#18 0.081 -rw-r--r-- 1 root root  5292 Apr 19 18:14 Icon-192.png
+#18 0.081 -rw-r--r-- 1 root root  8252 Apr 19 18:14 Icon-512.png
+#18 0.081 -rw-r--r-- 1 root root  5594 Apr 19 18:14 Icon-maskable-192.png
+#18 0.081 -rw-r--r-- 1 root root 20998 Apr 19 18:14 Icon-maskable-512.png
+#18 0.081 --- End of listing ---
+#18 DONE 0.1s

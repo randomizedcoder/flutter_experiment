@@ -1,0 +1,196 @@
+#24 [builder 10/12] COPY flutter_experiment/. ./
+#24 CACHED
+
+#25 [stage-2 4/8] COPY --from=builder /app/build/web /usr/share/nginx/html
+#25 CACHED
+
+#26 [stage-2 5/8] RUN echo "--- Displaying /etc/nginx/nginx.conf ---"     && cat /etc/nginx/nginx.conf     && echo "--- End /etc/nginx/nginx.conf ---"
+#26 0.065 --- Displaying /etc/nginx/nginx.conf ---
+#26 0.067
+#26 0.067 user  nginx;
+#26 0.067 worker_processes  auto;
+#26 0.067
+#26 0.067 error_log  /var/log/nginx/error.log notice;
+#26 0.067 pid        /run/nginx.pid;
+#26 0.067
+#26 0.067
+#26 0.067 events {
+#26 0.067     worker_connections  1024;
+#26 0.067 }
+#26 0.067
+#26 0.067
+#26 0.067 http {
+#26 0.067     include       /etc/nginx/mime.types;
+#26 0.067     default_type  application/octet-stream;
+#26 0.067
+#26 0.067     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+#26 0.067                       '$status $body_bytes_sent "$http_referer" '
+#26 0.067                       '"$http_user_agent" "$http_x_forwarded_for"';
+#26 0.067
+#26 0.067     access_log  /var/log/nginx/access.log  main;
+#26 0.067
+#26 0.067     sendfile        on;
+#26 0.067     #tcp_nopush     on;
+#26 0.067
+#26 0.067     keepalive_timeout  65;
+#26 0.067
+#26 0.067     #gzip  on;
+#26 0.067
+#26 0.067     include /etc/nginx/conf.d/*.conf;
+#26 0.067 }
+#26 0.067 --- End /etc/nginx/nginx.conf ---
+#26 DONE 0.1s
+
+#27 [stage-2 6/8] RUN echo "--- Listing /etc/nginx directory ---"     && ls -lR /etc/nginx     && echo "--- End /etc/nginx listing ---"
+#27 0.075 --- Listing /etc/nginx directory ---
+#27 0.076 /etc/nginx:
+#27 0.076 total 36
+#27 0.076 drwxr-xr-x    1 root     root          4096 Apr 19 19:03 conf.d
+#27 0.076 drwxr-xr-x    1 root     root          4096 Apr 19 19:03 custom_includes
+#27 0.076 -rw-r--r--    1 root     root          1077 Apr 16 12:55 fastcgi.conf
+#27 0.076 -rw-r--r--    1 root     root          1007 Apr 16 12:55 fastcgi_params
+#27 0.076 -rw-r--r--    1 root     root          5349 Apr 16 12:55 mime.types
+#27 0.076 lrwxrwxrwx    1 root     root            22 Apr 16 17:01 modules -> /usr/lib/nginx/modules
+#27 0.076 -rw-r--r--    1 root     root           644 Apr 16 12:55 nginx.conf
+#27 0.076 -rw-r--r--    1 root     root           636 Apr 16 12:55 scgi_params
+#27 0.076 -rw-r--r--    1 root     root           664 Apr 16 12:55 uwsgi_params
+#27 0.076
+#27 0.076 /etc/nginx/conf.d:
+#27 0.076 total 12
+#27 0.076 -rw-r--r--    1 root     root          1563 Apr 19 19:03 default.conf
+#27 0.076 -rw-r--r--    1 root     root          1017 Apr 19 18:39 gzip.conf
+#27 0.076 -rw-r--r--    1 root     root           471 Apr 19 18:37 open_file_cache.conf
+#27 0.076
+#27 0.076 /etc/nginx/custom_includes:
+#27 0.076 total 4
+#27 0.076 -rw-r--r--    1 root     root           917 Apr 19 18:57 cache_headers.conf
+#27 0.076 --- End /etc/nginx listing ---
+#27 DONE 0.1s
+
+#28 [stage-2 7/8] RUN echo "--- Displaying files in /etc/nginx/conf.d/ ---"     && cat /etc/nginx/conf.d/*     && echo "--- End /etc/nginx/conf.d/ ---"
+#28 0.075 --- Displaying files in /etc/nginx/conf.d/ ---
+#28 0.075 # build/containers/flutter_experiment/nginx.conf
+#28 0.075
+#28 0.075 server {
+#28 0.075     listen       80;
+#28 0.075     server_name  localhost;
+#28 0.075
+#28 0.075     root   /usr/share/nginx/html;
+#28 0.075     index  index.html index.htm;
+#28 0.075
+#28 0.075     if ($request_method = 'OPTIONS') {
+#28 0.075         # Define allowed origins (use '*' carefully, be specific if possible)
+#28 0.075         add_header 'Access-Control-Allow-Origin' '*' always;
+#28 0.075         # Define allowed methods
+#28 0.075         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, HEAD' always;
+#28 0.075         # Define allowed headers
+#28 0.075         add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type, Accept, Origin, User-Agent, DNT, Cache-Control, X-Mx-ReqToken, Keep-Alive, X-Requested-With, If-Modified-Since' always;
+#28 0.075         # Allow credentials if needed (usually for cookies/auth headers)
+#28 0.075         # add_header 'Access-Control-Allow-Credentials' 'true' always;
+#28 0.075         # Define how long the browser can cache this pre-flight response (e.g., 24 hours)
+#28 0.075         add_header 'Access-Control-Max-Age' 86400 always;
+#28 0.075         # Tell the browser the content length is 0
+#28 0.075         add_header 'Content-Length' 0;
+#28 0.075         # Return 204 No Content status
+#28 0.075         return 204;
+#28 0.075     }
+#28 0.075
+#28 0.075     location / {
+#28 0.075         try_files $uri $uri/ /index.html;
+#28 0.075         # Add standard CORS headers for actual requests if needed
+#28 0.075         # add_header 'Access-Control-Allow-Origin' '*' always;
+#28 0.075     }
+#28 0.075
+#28 0.075     include /etc/nginx/custom_includes/cache_headers.conf;
+#28 0.075
+#28 0.075     error_page   500 502 503 504  /50x.html;
+#28 0.075     location = /50x.html {
+#28 0.075         root   /usr/share/nginx/html; # Default Nginx error page location
+#28 0.075     }
+#28 0.075 }
+#28 0.075 # build/containers/flutter_experiment/gzip.conf
+#28 0.075
+#28 0.075 # Enable gzip compression
+#28 0.075 gzip on;
+#28 0.075
+#28 0.075 # Compression level (1-9) - higher means more compression but more CPU
+#28 0.075 gzip_comp_level 5;
+#28 0.075
+#28 0.075 # Minimum length of a response to compress (don't compress tiny files)
+#28 0.075 gzip_min_length 256;
+#28 0.075
+#28 0.075 # Compress responses for clients proxied via protocols other than HTTP/1.0
+#28 0.075 gzip_proxied any;
+#28 0.075
+#28 0.075 # Compress specific MIME types
+#28 0.075 gzip_types
+#28 0.075     application/atom+xml
+#28 0.075     application/javascript
+#28 0.075     application/json
+#28 0.075     application/ld+json
+#28 0.075     application/manifest+json
+#28 0.075     application/rss+xml
+#28 0.075     application/vnd.geo+json
+#28 0.075     application/vnd.ms-fontobject
+#28 0.075     application/x-font-ttf
+#28 0.075     application/x-web-app-manifest+json
+#28 0.075     application/xhtml+xml
+#28 0.075     application/xml
+#28 0.075     font/opentype
+#28 0.075     image/bmp
+#28 0.075     image/svg+xml
+#28 0.075     image/x-icon
+#28 0.075     text/cache-manifest
+#28 0.075     text/css
+#28 0.075     text/plain
+#28 0.075     text/vcard
+#28 0.075     text/vnd.rim.location.xloc
+#28 0.075     text/vtt
+#28 0.075     text/x-component
+#28 0.075     text/x-cross-domain-policy;
+#28 0.075 # Add any other text-based types your app might serve
+#28 0.075 # build/containers/flutter_experiment/open_file_cache.conf
+#28 0.075
+#28 0.075 # Caches file descriptors, size, modification time, existence, and errors.
+#28 0.075 open_file_cache          max=1000 inactive=20s; # Cache up to 1000 entries, remove if inactive for 20s
+#28 0.075 open_file_cache_valid    30s; # Check validity of cached items every 30s
+#28 0.075 open_file_cache_min_uses 2;   # Cache item only after it's accessed at least 2 times
+#28 0.075 open_file_cache_errors   on;  # Cache errors like "file not found" as well
+#28 0.075 --- End /etc/nginx/conf.d/ ---
+#28 DONE 0.1s
+
+#29 [stage-2 8/8] RUN echo "--- Displaying files in /etc/nginx/custom_includes/ ---"     && cat /etc/nginx/custom_includes/*     && echo "--- End /etc/nginx/custom_includes/ ---"
+#29 0.071 --- Displaying files in /etc/nginx/custom_includes/ ---
+#29 0.072 # build/containers/flutter_experiment/cache_headers.conf
+#29 0.072
+#29 0.072 # Included within the server block to set specific cache headers
+#29 0.072
+#29 0.072 # Rule for index.html: Must revalidate
+#29 0.072 location = /index.html {
+#29 0.072     #add_header Cache-Control "no-cache";
+#29 0.072     add_header Cache-Control "max-age=300, stale-while-revalidate=2";
+#29 0.072 }
+#29 0.072
+#29 0.072 # Cache Icons and Fonts for 7 days, revalidate after 5 days
+#29 0.072 # Matches .png, .ico (for favicon), .otf, .ttf case-insensitively
+#29 0.072 location ~* \.(?:png|ico|otf|ttf)$ {
+#29 0.072     # Set max-age to 7 days (604800s), stale-while-revalidate to 5 days (432000s)
+#29 0.072     add_header Cache-Control "public, max-age=604800, stale-while-revalidate=432000";
+#29 0.072     access_log off; # Optional: Reduces log noise
+#29 0.072 }
+#29 0.072
+#29 0.072 # Cache JS, WASM, and MJS files with max-age=1, stale-while-revalidate=300
+#29 0.072 location ~* \.(?:js|wasm|mjs)$ {
+#29 0.072     add_header Cache-Control "max-age=300, stale-while-revalidate=2";
+#29 0.072     access_log off; # Optional: Reduces log noise
+#29 0.072 }
+#29 0.072 --- End /etc/nginx/custom_includes/ ---
+#29 DONE 0.1s
+
+#30 exporting to image
+#30 exporting layers 0.0s done
+#30 writing image sha256:ce48e69a823e714a841bf94dda77812aae50680665c00cd070238d4e08f3014a done
+#30 naming to docker.io/randomizedcoder/flutter_experiment:0.0.1 done
+#30 naming to docker.io/randomizedcoder/flutter_experiment:latest done
+#30 DONE 0.1s
+[] Finished build_flutter_experiment. Duration: 1001 ms.
